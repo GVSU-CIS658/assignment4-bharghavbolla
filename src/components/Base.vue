@@ -1,17 +1,27 @@
+<script setup lang="ts">
+import { computed } from "vue";
+import { useBeverageStore } from "../stores/beverageStore";
+
+const store = useBeverageStore();
+
+const baseHeight = computed(() => store.baseHeight);
+const currentBase = computed(() => store.currentBase);
+</script>
+
 <template>
-  <div class="baseBeverage"></div>
+  <div
+    class="base"
+    :style="{
+      backgroundColor: currentBase.color,
+      height: baseHeight + '%'
+    }"
+  ></div>
 </template>
 
-<script setup lang="ts"></script>
-
 <style scoped>
-.baseBeverage {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.base {
+  position: absolute;
   bottom: 0;
-  animation: pour-tea 2s;
-  z-index: 300;
-  /* // border-radius: 0.05em 0.05em 2.2em 2.2em; */
+  width: 100%;
 }
 </style>
